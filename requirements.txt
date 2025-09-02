@@ -1,0 +1,27 @@
+﻿# DeepCode-Analyst 项目依赖
+# 基础数据处理和Git操作
+gitpython==3.1.40
+tree-sitter==0.20.4
+tree-sitter-languages==1.8.0
+python-dotenv==1.0.0
+networkx==3.2.1
+
+# LangChain 和多智能体系统
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langgraph>=0.0.20
+
+# 数据处理和分析
+pandas==2.1.4
+numpy==1.25.2
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# 图谱存储和处理
+pickle-mixin==1.0.2
+python-igraph==0.11.3
+
+# 其他工具
+click==8.1.7
+tqdm==4.66.1
+loguru==0.7.2

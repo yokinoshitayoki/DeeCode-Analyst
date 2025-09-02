@@ -1,0 +1,47 @@
+{
+  "distillation": {
+    "description": "DeepCode-Analyst 知识蒸馏配置",
+    "teacher_model": {
+      "base_model": "Qwen/Qwen1.5-7B-Chat",
+      "adapter_path": "/root/autodl-tmp/models/deepcode-analyst-finetuned",
+      "description": "微调后的7B教师模型"
+    },
+    "student_models": {
+      "qwen_1.8b": {
+        "model_id": "Qwen/Qwen1.5-1.8B-Chat",
+        "compression_ratio": "3.9x",
+        "recommended": true,
+        "description": "推荐的学生模型，平衡性能和效果"
+      },
+      "qwen_0.5b": {
+        "model_id": "Qwen/Qwen1.5-0.5B-Chat", 
+        "compression_ratio": "14x",
+        "recommended": false,
+        "description": "超轻量级模型，适合资源极度受限环境"
+      }
+    },
+    "training_config": {
+      "temperature": 3.0,
+      "alpha": 0.3,
+      "batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "epochs": 2,
+      "learning_rate": 5e-5,
+      "warmup_steps": 10,
+      "max_length": 1024,
+      "output_dir": "/root/autodl-tmp/models/deepcode-analyst-distilled"
+    },
+    "quality_targets": {
+      "response_length_retention": ">= 0.8",
+      "technical_terms_retention": ">= 0.85", 
+      "structure_quality": ">= 0.9",
+      "speed_improvement": ">= 3x"
+    },
+    "hardware_requirements": {
+      "minimum_vram": "16GB",
+      "recommended_vram": "24GB",
+      "cpu_fallback": false,
+      "estimated_time": "30-60分钟"
+    }
+  }
+}

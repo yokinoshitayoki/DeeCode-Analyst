@@ -1,0 +1,22 @@
+{
+  "local_config": {
+    "cloud_data_dir": "./cloud_data",
+    "cache_dir": "./model_cache",
+    "use_gpu": true,
+    "use_quantization": true,
+    "max_memory": "auto"
+  },
+  "model_paths": {
+    "teacher_model": "./cloud_data/models/teacher_7b",
+    "student_model": "./cloud_data/models/student_0.5b",
+    "teacher_knowledge": "./cloud_data/knowledge/teacher_knowledge_lite.pkl",
+    "training_data": "./cloud_data/data/training_data.jsonl"
+  },
+  "inference_config": {
+    "max_new_tokens": 200,
+    "temperature": 0.7,
+    "do_sample": true,
+    "top_p": 0.9,
+    "repetition_penalty": 1.1
+  }
+}

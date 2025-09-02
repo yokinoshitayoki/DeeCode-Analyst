@@ -1,0 +1,32 @@
+﻿# QLoRA微调配置示例
+{
+  \"model_id\": \"Qwen/Qwen1.5-7B-Chat\",
+  \"dataset_path\": \"./training_data.jsonl\",
+  \"output_dir\": \"./models/deepcode-analyst-finetuned\",
+  
+  \"batch_size\": 1,
+  \"gradient_accumulation_steps\": 4,
+  \"num_epochs\": 3,
+  \"learning_rate\": 5e-5,
+  \"max_length\": 2048,
+  \"test_size\": 0.1,
+  
+  \"lora_r\": 16,
+  \"lora_alpha\": 32,
+  \"lora_dropout\": 0.05,
+  \"target_modules\": [
+    \"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\",
+    \"gate_proj\", \"up_proj\", \"down_proj\"
+  ],
+  
+  \"use_wandb\": false,
+  \"wandb_project\": \"deepcode-analyst\",
+  \"run_name\": \"qwen-7b-finetune\",
+  
+  \"logging_steps\": 10,
+  \"save_steps\": 500,
+  \"eval_steps\": 500,
+  \"warmup_steps\": 100,
+  \"weight_decay\": 0.01,
+  \"lr_scheduler_type\": \"cosine\"
+}
