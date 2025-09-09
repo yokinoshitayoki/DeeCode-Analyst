@@ -188,24 +188,9 @@ DeepCode-Analyst/
 
 ## 使用示例
 
-### 场景1：开源项目技术分析
-```bash
-# 分析 FastAPI 项目
-python main.py analyze https://github.com/tiangolo/fastapi --verbose
-
-# 查询路由相关函数
-python main.py query ./data/graphs/fastapi_graph.pickle --name-pattern "route"
-
-# 输出示例：
-# 仓库分析完成
-# 统计信息:
-#   解析文件数: 157
-#   成功率: 94.27%
-#   图谱节点数: 1,248
-#   图谱边数: 2,856
 ```
 
-### 场景2：代码质量评估
+### 场景1：代码质量评估
 ```python
 # 使用微调模型分析代码质量
 from cloud_data.scripts.local_model_loader import load_student_model
@@ -232,7 +217,7 @@ analysis = analyze_code_quality(model, tokenizer, code_snippet)
 print(analysis)
 ```
 
-### 场景3：架构理解助手
+### 场景2：架构理解助手
 ```bash
 # 分析复杂项目的架构
 python main.py analyze https://github.com/django/django
@@ -240,14 +225,6 @@ python main.py analyze https://github.com/django/django
 # 查询模型相关的类
 python main.py query ./data/graphs/django_graph.pickle --node-type class --name-pattern "Model"
 
-# 使用多智能体进行架构分析
-python -c "
-from src.agents.graph import AgentGraph
-agent = AgentGraph()
-result = agent.analyze_architecture('./data/graphs/django_graph.pickle')
-print(result['final_report'])
-"
-```
 
 ## 高级功能
 
@@ -289,22 +266,6 @@ cd /root/DeepCode-Analyst
 bash cloud_data/一键部署.bat
 ```
 
-#### Docker 部署（即将支持）
-```bash
-# 构建镜像
-docker build -t deepcode-analyst .
-
-# 运行容器
-docker run -p 8000:8000 --gpus all deepcode-analyst
-```
-
-### Web 界面（开发中）
-```bash
-# 启动Web服务
-python cloud_data/scripts/web_interface.py
-
-# 访问 http://localhost:8080
-```
 
 ## 开发指南
 
@@ -332,24 +293,7 @@ def _parse_java_file(self, tree: Tree, file_path: str) -> Tuple[List[Dict], List
     pass
 ```
 
-### 扩展智能体功能
 
-1. **添加新智能体节点**：
-```python
-# src/agents/graph.py
-def security_analyst(state: AgentState) -> Dict[str, Any]:
-    """安全分析智能体"""
-    # 实现安全分析逻辑
-    pass
-```
-
-2. **更新图连接**：
-```python
-def _build_graph(self) -> StateGraph:
-    graph.add_node("security_analyst", self.security_analyst)
-    graph.add_edge("code_analyzer", "security_analyst")
-    # ...
-```
 
 ### 自定义模型训练
 
